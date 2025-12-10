@@ -1,0 +1,68 @@
+[
+  {
+    "_id": "692eddb3edf67ed3ebe7b081",
+    "title": "Impact of AI on Systems Engineering",
+    "status": "published",
+    "articleNumber": 3,
+    "issue": "Vol 1, Issue 1"
+  },
+  {
+    "_id": "692eddc2edf67ed3ebe7b083",
+    "title": "Impact of AI on Systems Engineering",
+    "status": "published",
+    "articleNumber": 1,
+    "issue": "Vol 1, Issue 1"
+  },
+  {
+    "_id": "692eddc3edf67ed3ebe7b085",
+    "title": "Impact of AI on Systems Engineering",
+    "status": "accepted"
+  },
+  {
+    "_id": "692eddc3edf67ed3ebe7b087",
+    "title": "Impact of AI on Systems Engineering",
+    "status": "under_review"
+  },
+  {
+    "_id": "692eddc4edf67ed3ebe7b089",
+    "title": "Impact of AI on Systems Engineering",
+    "status": "revision_required"
+  },
+  {
+    "_id": "692eddc5edf67ed3ebe7b08b",
+    "title": "Impact of AI on Systems Engineering",
+    "status": "rejected"
+  },
+  {
+    "_id": "6932bcd547b1f877b75f728f",
+    "title": "deep learning ",
+    "status": "accepted"
+  },
+  {
+    "_id": "6932c32e097c7aeb6473a6a9",
+    "title": "nothing interesting",
+    "status": "accepted"
+  },
+  {
+    "_id": "6932d1dc85bc90e97af90fa6",
+    "title": "AI",
+    "status": "accepted"
+  },
+  {
+    "_id": "6932d4559e231a059ba9b232",
+    "title": "Ai with ai",
+    "status": "published",
+    "articleNumber": 1,
+    "issue": "Vol 1, Issue 2"
+  },
+  {
+    "_id": "6932d6639e231a059ba9b26b",
+    "title": "computational intelligence",
+    "status": "accepted"
+  },
+  {
+    "_id": "6934226a2478822eebcfee97",
+    "title": "DEEP-TAIL-NETS: A WIRELESS SENSOR NETWORK BASED INTRUSION DETECTION SYSTEM USING DEEP OPTIMIZED SELF–ATTENTION LEARNING NETWORKS",
+    "status": "accepted"
+  }
+]
