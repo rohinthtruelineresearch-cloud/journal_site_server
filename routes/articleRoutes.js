@@ -63,7 +63,7 @@ router.get('/next-number', protect, admin, async (req, res) => {
         
         res.json({ nextArticleNumber: nextNumber });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 
@@ -75,7 +75,7 @@ router.get('/my-articles', protect, async (req, res) => {
     const articles = await Article.find({ submittedBy: req.user._id });
     res.json(articles);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -87,7 +87,7 @@ router.get('/assigned', protect, async (req, res) => {
         const articles = await Article.find({ 'reviewers.user': req.user._id });
         res.json(articles);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 
@@ -103,19 +103,32 @@ router.get('/stats', protect, admin, async (req, res) => {
         
         res.json({ total, pending, published, rejected });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 
-// @desc    Get all articles
+const Redis = require('ioredis');
+let redisClient;
+
+if (process.env.REDIS_URL) {
+  redisClient = new Redis(process.env.REDIS_URL);
+  redisClient.on('error', (err) => console.error('Redis Client Error', err));
+}
+
+// Helper to get from cache or db - Removed
+// const getOrSetCache = async (key, cb) => { ... }
+
+// ... (other imports stay same, assume file continues) ...
+
+// @desc    Get all articles with pagination
 // @route   GET /api/articles
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const articles = await Article.find({});
+    const articles = await Article.find({}).sort({ createdAt: -1 });
     res.json(articles);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -129,14 +142,18 @@ router.get('/:id', async (req, res) => {
     if (article) {
       res.json(article);
     } else {
-      res.status(404).json({ message: 'Article not found' });
+      res.status(404).json({ success: false, message: 'Article not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
 
+
+// Helper to clear cache
+// Helper to clear cache - Removed
+// const clearCache = async (key) => { ... }
 
 // @desc    Create a new article
 // @route   POST /api/articles
@@ -162,7 +179,7 @@ router.post('/', protect, upload.fields([{ name: 'manuscript', maxCount: 1 }, { 
     });
     res.status(201).json(article);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ success: false, message: error.message });
   }
 });
 
@@ -184,7 +201,7 @@ router.put('/:id', protect, async (req, res) => {
       const isReviewer = !!reviewerEntry;
 
       if (!isAdmin && !isReviewer) {
-          return res.status(401).json({ message: 'Not authorized' });
+          return res.status(401).json({ success: false, message: 'Not authorized' });
       }
 
       if (isAdmin) {
@@ -199,12 +216,13 @@ router.put('/:id', protect, async (req, res) => {
       }
       
       const updatedArticle = await article.save();
+      await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
-      res.status(404).json({ message: 'Article not found' });
+      res.status(404).json({ success: false, message: 'Article not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -223,24 +241,25 @@ router.put('/:id/assign', protect, admin, async (req, res) => {
             // Check if already assigned
             const alreadyAssigned = article.reviewers.find(r => r.user.toString() === reviewerId);
             if (alreadyAssigned) {
-                 return res.status(400).json({ message: 'Reviewer already assigned' });
+                 return res.status(400).json({ success: false, message: 'Reviewer already assigned' });
             }
             
             // Limit directly to 5
             if (article.reviewers.length >= 5) {
-                return res.status(400).json({ message: 'Maximum 5 reviewers allowed' });
+                return res.status(400).json({ success: false, message: 'Maximum 5 reviewers allowed' });
             }
 
             article.reviewers.push({ user: reviewerId, status: 'under_review' });
             article.status = 'under_review'; // Ensure article is marked as under review
             
             const updatedArticle = await article.save();
+            // await clearCache(`article_${req.params.id}`);
             res.json(updatedArticle);
         } else {
-            res.status(404).json({ message: 'Article not found' });
+            res.status(404).json({ success: false, message: 'Article not found' });
         }
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 
@@ -254,12 +273,13 @@ router.put('/:id/doi', protect, admin, async (req, res) => {
     if (article) {
       article.doi = `10.1000/${article._id}`; // Simple DOI generation logic
       const updatedArticle = await article.save();
+      await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
-      res.status(404).json({ message: 'Article not found' });
+      res.status(404).json({ success: false, message: 'Article not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -278,12 +298,13 @@ router.put('/:id/issue', protect, admin, async (req, res) => {
           article.articleNumber = articleNumber;
       }
       const updatedArticle = await article.save();
+      await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
-      res.status(404).json({ message: 'Article not found' });
+      res.status(404).json({ success: false, message: 'Article not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -300,12 +321,13 @@ router.put('/:id/pdf', protect, admin, async (req, res) => {
     if (article) {
       article.pdfUrl = pdfUrl;
       const updatedArticle = await article.save();
+      await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
-      res.status(404).json({ message: 'Article not found' });
+      res.status(404).json({ success: false, message: 'Article not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 

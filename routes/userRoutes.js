@@ -1,5 +1,11 @@
 const express = require('express');
 const router = express.Router();
+
+router.use((req, res, next) => {
+  console.log('--- Entering User Routes ---');
+  console.log('User Route Path:', req.path);
+  next();
+});
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
@@ -11,17 +17,46 @@ const generateToken = (id) => {
   });
 };
 
+const cookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+  maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+  path: '/'
+};
+
+
 // @desc    Register a new user
 // @route   POST /api/users/register
 // @access  Public
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
 
+  // Password Validation
+  if (password.length < 8) {
+    return res.status(400).json({ success: false, message: 'Password must be at least 8 characters long' });
+  }
+  if (!/[A-Z]/.test(password)) {
+    return res.status(400).json({ success: false, message: 'Password must contain at least one uppercase letter' });
+  }
+  if (!/[a-z]/.test(password)) {
+    return res.status(400).json({ success: false, message: 'Password must contain at least one lowercase letter' });
+  }
+  if (!/[0-9]/.test(password)) {
+    return res.status(400).json({ success: false, message: 'Password must contain at least one number' });
+  }
+  if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+    return res.status(400).json({ success: false, message: 'Password must contain at least one symbol' });
+  }
+  if (name && password.toLowerCase() === name.toLowerCase()) {
+    return res.status(400).json({ success: false, message: 'Password cannot be the same as your name' });
+  }
+
   try {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ success: false, message: 'User already exists' });
     }
 
     const user = await User.create({
@@ -31,18 +66,38 @@ router.post('/register', async (req, res) => {
     });
 
     if (user) {
+      const token = generateToken(user._id);
+
+
+
+// ... inside register route ...
+      res.cookie('jwt', token, cookieOptions);
+
+// ... inside login route ...
+      res.cookie('jwt', token, cookieOptions);
+
+// ... inside logout route ...
+router.post('/logout', (req, res) => {
+  res.cookie('jwt', '', { ...cookieOptions, maxAge: 0, expires: new Date(0) });
+  
+  res.setHeader('Clear-Site-Data', '"cookies", "storage"');
+  res.status(200).json({ success: true, message: 'Logged out successfully' });
+});
+
+// ... inside google auth callback ...
+    res.cookie('jwt', token, cookieOptions);
+
       res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,
-        token: generateToken(user._id),
       });
     } else {
-      res.status(400).json({ message: 'Invalid user data' });
+      res.status(400).json({ success: false, message: 'Invalid user data' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -56,6 +111,10 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
+      const token = generateToken(user._id);
+
+      res.cookie('jwt', token, cookieOptions);
+
       res.json({
         _id: user._id,
         name: user.name,
@@ -64,11 +123,49 @@ router.post('/login', async (req, res) => {
         token: generateToken(user._id),
       });
     } else {
-      res.status(401).json({ message: 'Invalid email or password' });
+      res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
+});
+
+// @desc    Logout user / clear cookie
+// @route   POST /api/users/logout
+// @access  Public
+router.post('/logout', (req, res) => {
+  // 1. Clear with current global options
+  res.cookie('jwt', '', { ...cookieOptions, maxAge: 0, expires: new Date(0) });
+
+  // 2. Clear with 'Production' style (Secure, None)
+  res.cookie('jwt', '', { 
+    httpOnly: true, 
+    secure: true, 
+    sameSite: 'None', 
+    expires: new Date(0),
+    path: '/' 
+  });
+  
+  // 3. Clear with 'Dev' style (Not Secure, Lax)
+  res.cookie('jwt', '', { 
+    httpOnly: true, 
+    secure: false, 
+    sameSite: 'Lax', 
+    expires: new Date(0),
+    path: '/' 
+  });
+
+  // 4. Clear matching possible router mount paths
+  res.clearCookie('jwt', { path: '/api/users' });
+  res.clearCookie('jwt', { path: '/api' });
+  
+  // 5. Clear default (no path, just in case)
+  res.clearCookie('jwt');
+  
+  // Force client to clear data
+  res.setHeader('Clear-Site-Data', '"cookies", "storage"');
+  
+  res.status(200).json({ success: true, message: 'Logged out successfully' });
 });
 
 // @desc    Auth with Google
@@ -144,17 +241,25 @@ router.put('/profile', protect, async (req, res) => {
         biography: updatedUser.biography,
     });
   } else {
-    res.status(404).json({ message: 'User not found' });
+    res.status(404).json({ success: false, message: 'User not found' });
   }
 });
 
 // @desc    Get user profile
 // @route   GET /api/users/profile
 // @access  Private
-router.get('/profile', protect, async (req, res) => {
+// Debugging Protect Middleware
+console.log('Protect Type:', typeof protect);
+
+router.get('/profile', (req, res, next) => {
+  console.log('--- Inside Profile Route Handler (Pre-Protect) ---');
+  next();
+}, protect, async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
+    res.set('ETag', false); // Disable ETag to prevent 304
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.json({
       _id: user._id,
       name: user.name,
@@ -179,7 +284,7 @@ router.get('/profile', protect, async (req, res) => {
         biography: user.biography,
     });
   } else {
-    res.status(404).json({ message: 'User not found' });
+    res.status(404).json({ success: false, message: 'User not found' });
   }
 });
 
@@ -188,7 +293,7 @@ router.get('/profile', protect, async (req, res) => {
 // @access  Private/Admin
 router.get('/', protect, async (req, res) => {
     if (req.user.role !== 'admin') {
-        return res.status(401).json({ message: 'Not authorized' });
+        return res.status(401).json({ success: false, message: 'Not authorized' });
     }
 
     try {
@@ -200,7 +305,7 @@ router.get('/', protect, async (req, res) => {
         const users = await User.find(query).select('-password');
         res.json(users);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 
@@ -212,36 +317,12 @@ router.get(
   passport.authenticate('google', { session: false, failureRedirect: '/login' }),
   (req, res) => {
     const token = generateToken(req.user._id);
-    let frontendUrl = req.query.state;
-
-    // Validate and Clean the URL
-    // Default to env var or localhost if state is missing or invalid
-    const allowedOrigins = [
-      'http://localhost:3000',
-      'https://aurorajournal.netlify.app'
-    ];
-    // Add current env frontend url if exists
-    if (process.env.FRONTEND_URL) {
-      allowedOrigins.push(process.env.FRONTEND_URL);
-    }
-
-    let isValid = false;
-    if (frontendUrl) {
-      try {
-        const urlObj = new URL(frontendUrl);
-        if (allowedOrigins.includes(urlObj.origin)) {
-           isValid = true;
-        }
-      } catch (e) {
-        // invalid url
-      }
-    }
-
-    if (!isValid) {
-        frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
-    }
-
-    res.redirect(`${frontendUrl}/login?token=${token}`);
+    
+    // Redirect with token in URL (Old behavior for localStorage)
+    res.cookie('jwt', token, cookieOptions);
+    
+    // Redirect without token
+    res.redirect(`${frontendUrl}/login?success=true`);
   }
 );
 

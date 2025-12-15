@@ -5,6 +5,7 @@ const connectDB = async () => {
     console.log('Attempting to connect to MongoDB...');
     const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/journal_db', {
       family: 4, // Force IPv4
+      maxPoolSize: 10,
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {

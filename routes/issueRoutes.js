@@ -21,7 +21,7 @@ router.get('/next-number/:volume', protect, async (req, res) => {
     
     res.json({ nextIssueNumber });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -32,7 +32,7 @@ router.post('/publish', protect, async (req, res) => {
     const { volume, issue: requestedIssue, title, description } = req.body;
 
     if (!volume) {
-        return res.status(400).json({ message: "Volume number is required" });
+        return res.status(400).json({ success: false, message: "Volume number is required" });
     }
 
     try {
@@ -68,7 +68,7 @@ router.post('/publish', protect, async (req, res) => {
              const existing = await Issue.findOne({ volume, issue: req.body.issue }); 
              return res.status(200).json(existing);
         } else {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ success: false, message: error.message });
         }
     }
 });
@@ -90,7 +90,7 @@ router.get('/', async (req, res) => {
         const issues = await Issue.find(query).sort({ volume: -1, issue: -1 });
         res.json(issues);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 
