@@ -321,6 +321,9 @@ router.get(
     // Redirect with token in URL (Old behavior for localStorage)
     res.cookie('jwt', token, cookieOptions);
     
+    // Determine frontend URL
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
     // Redirect without token
     res.redirect(`${frontendUrl}/login?success=true`);
   }
