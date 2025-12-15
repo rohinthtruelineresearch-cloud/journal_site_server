@@ -324,8 +324,8 @@ router.get(
     // Determine frontend URL
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 
-    // Redirect without token
-    res.redirect(`${frontendUrl}/login?success=true`);
+    // Redirect with token in URL (Cookie fallback is unreliable across domains)
+    res.redirect(`${frontendUrl}/login?success=true&token=${token}`);
   }
 );
 
