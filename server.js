@@ -108,7 +108,7 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.use(errorHandler);
 
-const PORT = 5000; // Hardcode port for stability in dev
+const PORT = process.env.PORT || 5005; // Default to 5005 matching frontend
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });

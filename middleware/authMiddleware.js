@@ -7,21 +7,25 @@ const protect = async (req, res, next) => {
   console.log('--- Auth Check ---');
   console.log('Headers Cookie String:', req.headers.cookie);
   
-  if (req.cookies.jwt) {
-    token = req.cookies.jwt;
-    console.log('Middleware: Cookie found:', token.substring(0, 10) + '...');
-  } else if (
+  // Check for Bearer token FIRST (Force precedence over stale cookies)
+  if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
     try {
       token = req.headers.authorization.split(' ')[1];
-      console.log('Middleware: Bearer token found');
+      console.log('Middleware: Bearer token found:', token); // DEBUG LOG
     } catch (error) {
-       console.error(error);
+       console.error('Middleware Header Parsing Error:', error);
     }
+  } 
+  // Fallback to cookie if no header
+  else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+    console.log('Middleware: Cookie found:', token.substring(0, 10) + '...');
   }
 
+  // Explicitly check for "null" string which happens if frontend sends "Bearer null"
   if (token && token !== 'undefined' && token !== 'null') {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
