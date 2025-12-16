@@ -216,7 +216,7 @@ router.put('/:id', protect, async (req, res) => {
       }
       
       const updatedArticle = await article.save();
-      await clearCache(`article_${req.params.id}`);
+      // await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
       res.status(404).json({ success: false, message: 'Article not found' });
@@ -253,6 +253,7 @@ router.put('/:id/assign', protect, admin, async (req, res) => {
             article.status = 'under_review'; // Ensure article is marked as under review
             
             const updatedArticle = await article.save();
+            const updatedArticle = await article.save();
             // await clearCache(`article_${req.params.id}`);
             res.json(updatedArticle);
         } else {
@@ -273,7 +274,7 @@ router.put('/:id/doi', protect, admin, async (req, res) => {
     if (article) {
       article.doi = `10.1000/${article._id}`; // Simple DOI generation logic
       const updatedArticle = await article.save();
-      await clearCache(`article_${req.params.id}`);
+      // await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
       res.status(404).json({ success: false, message: 'Article not found' });
@@ -298,7 +299,7 @@ router.put('/:id/issue', protect, admin, async (req, res) => {
           article.articleNumber = articleNumber;
       }
       const updatedArticle = await article.save();
-      await clearCache(`article_${req.params.id}`);
+      // await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
       res.status(404).json({ success: false, message: 'Article not found' });
@@ -321,7 +322,7 @@ router.put('/:id/pdf', protect, admin, async (req, res) => {
     if (article) {
       article.pdfUrl = pdfUrl;
       const updatedArticle = await article.save();
-      await clearCache(`article_${req.params.id}`);
+      // await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
       res.status(404).json({ success: false, message: 'Article not found' });
