@@ -253,7 +253,7 @@ router.put('/:id/assign', protect, admin, async (req, res) => {
             article.status = 'under_review'; // Ensure article is marked as under review
             
             const updatedArticle = await article.save();
-            const updatedArticle = await article.save();
+
             // await clearCache(`article_${req.params.id}`);
             res.json(updatedArticle);
         } else {
