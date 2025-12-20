@@ -159,26 +159,61 @@ router.get('/:id', async (req, res) => {
 // @route   POST /api/articles
 // @access  Private
 router.post('/', protect, upload.fields([{ name: 'manuscript', maxCount: 1 }, { name: 'coverLetter', maxCount: 1 }]), async (req, res) => {
-  const { title, abstract, authors, content, wantsReviewerRole } = req.body;
+  const { 
+    title, 
+    abstract, 
+    authors, 
+    content,
+    paperType,
+    keywords,
+    suggestedReviewers,
+    opposedReviewers,
+    hasFunding,
+    funders,
+    wasConferenceAccepted,
+    conferenceName,
+    wantsReviewerRole 
+  } = req.body;
 
   try {
-    //Upgrade user to reviewer if requested
+    // Upgrade user to reviewer if requested
     if (wantsReviewerRole === 'true' && req.user.role === 'author') {
         req.user.role = 'reviewer';
         await req.user.save();
     }
 
+    // Parse JSON strings safely
+    const parseJSON = (str) => {
+      try {
+        return str ? JSON.parse(str) : [];
+      } catch {
+        return [];
+      }
+    };
+
     const article = await Article.create({
       title,
       abstract,
-      authors: JSON.parse(authors), // Authors sent as JSON string
-      content,
+      paperType: paperType || 'regular',
+      authors: parseJSON(authors),
+      keywords: parseJSON(keywords),
+      suggestedReviewers: parseJSON(suggestedReviewers),
+      opposedReviewers: parseJSON(opposedReviewers),
+      hasFunding: hasFunding === 'true',
+      funders: parseJSON(funders),
+      wasConferenceAccepted: wasConferenceAccepted === 'true',
+      conferenceName: conferenceName || '',
+      content: content || '',
       submittedBy: req.user._id,
       manuscriptUrl: req.files['manuscript'] ? req.files['manuscript'][0].path.replace(/\\/g, '/') : null,
       coverLetterUrl: req.files['coverLetter'] ? req.files['coverLetter'][0].path.replace(/\\/g, '/') : null,
+      status: 'submitted',
     });
+    
+    console.log('Article created:', article._id, 'by user:', req.user._id);
     res.status(201).json(article);
   } catch (error) {
+    console.error('Article creation error:', error);
     res.status(400).json({ success: false, message: error.message });
   }
 });

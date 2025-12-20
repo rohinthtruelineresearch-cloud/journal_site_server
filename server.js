@@ -13,6 +13,7 @@ const userRoutes = require('./routes/userRoutes');
 const articleRoutes = require('./routes/articleRoutes');
 const issueRoutes = require('./routes/issueRoutes');
 const mergeRoutes = require('./routes/mergeRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
@@ -32,8 +33,7 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:5000',
-    'https://aurorajournal.netlify.app',
-    'https://journal-site-backend.onrender.com'
+    'https://aurorajournal.netlify.app'
   ],
   credentials: true
 }));
@@ -102,6 +102,7 @@ app.use('/api/users', (req, res, next) => {
 }, userRoutes);
 app.use('/api/articles', articleRoutes);
 app.use('/api/issues', issueRoutes);
+app.use('/api/notifications', notificationRoutes);
 app.use('/api', mergeRoutes);
 
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));

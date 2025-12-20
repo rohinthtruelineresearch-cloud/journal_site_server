@@ -1,5 +1,18 @@
 const mongoose = require('mongoose');
 
+// Define author subdocument schema
+const authorSchema = new mongoose.Schema({
+  firstName: { type: String, default: '' },
+  lastName: { type: String, default: '' },
+  email: { type: String, default: '' },
+  orcid: { type: String, default: '' },
+  institution: { type: String, default: '' },
+  city: { type: String, default: '' },
+  country: { type: String, default: '' },
+  isCorresponding: { type: Boolean, default: false },
+  order: { type: Number, default: 1 },
+}, { _id: false });
+
 const articleSchema = mongoose.Schema({
   title: {
     type: String,
@@ -9,13 +22,17 @@ const articleSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  authors: [{
+  paperType: {
     type: String,
-    required: true,
+    default: 'regular',
+  },
+  authors: [authorSchema],
+  keywords: [{
+    type: String,
   }],
   content: {
     type: String,
-    required: true,
+    default: '',
   },
   status: {
     type: String,
@@ -34,6 +51,34 @@ const articleSchema = mongoose.Schema({
   coverLetterUrl: {
     type: String,
   },
+  coverLetterText: {
+    type: String,
+  },
+  hasFunding: {
+    type: Boolean,
+    default: false,
+  },
+  funders: [{
+    name: String,
+    grantNumber: String,
+  }],
+  wasConferenceAccepted: {
+    type: Boolean,
+    default: false,
+  },
+  conferenceName: {
+    type: String,
+  },
+  suggestedReviewers: [{
+    name: String,
+    email: String,
+    institution: String,
+  }],
+  opposedReviewers: [{
+    name: String,
+    email: String,
+    institution: String,
+  }],
   reviewerComments: {
     type: String,
   },
@@ -46,12 +91,10 @@ const articleSchema = mongoose.Schema({
   submittedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    // required: true, // Optional for now to allow easier testing without auth
   },
-  // reviewer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Deprecated
   reviewers: [{
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      status: { type: String, default: 'under_review' }, // 'under_review', 'accepted', 'rejected', 'revision_required'
+      status: { type: String, default: 'under_review' },
       comments: { type: String },
       date: { type: Date, default: Date.now }
   }],
@@ -67,3 +110,4 @@ articleSchema.index({ submittedBy: 1 });
 const Article = mongoose.model('Article', articleSchema);
 
 module.exports = Article;
+
