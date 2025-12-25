@@ -94,18 +94,48 @@ const articleSchema = mongoose.Schema({
   },
   reviewers: [{
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      status: { type: String, default: 'under_review' },
+      status: { type: String, enum: ['invited', 'accepted', 'declined', 'completed', 'under_review', 'rejected', 'revision_required'], default: 'invited' },
       comments: { type: String },
+      decision: { type: String },
       date: { type: Date, default: Date.now }
   }],
+  manuscriptId: {
+    type: String,
+    unique: true,
+    sparse: true, // Allow nulls initially during migration
+  },
 }, {
   timestamps: true,
+});
+
+// Generate unique Manuscript ID before saving
+articleSchema.pre('save', async function() {
+  if (!this.manuscriptId) {
+    const year = new Date().getFullYear();
+    const count = await mongoose.model('Article').countDocuments({
+        createdAt: {
+            $gte: new Date(year, 0, 1),
+            $lt: new Date(year + 1, 0, 1)
+        }
+    });
+    // Format: AJSE-2025-0001
+    this.manuscriptId = `AJSE-${year}-${(count + 1).toString().padStart(4, '0')}`;
+    
+    // Check for collisions just in case (though highly unlikely with sequential count in same year)
+    let collision = await mongoose.model('Article').findOne({ manuscriptId: this.manuscriptId });
+    while (collision) {
+        const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+        this.manuscriptId = `AJSE-${year}-${(count + 1).toString().padStart(4, '0')}-${randomSuffix}`;
+        collision = await mongoose.model('Article').findOne({ manuscriptId: this.manuscriptId });
+    }
+  }
 });
 
 // Indexes for performance
 articleSchema.index({ status: 1 });
 articleSchema.index({ issue: 1 });
 articleSchema.index({ submittedBy: 1 });
+articleSchema.index({ manuscriptId: 1 });
 
 const Article = mongoose.model('Article', articleSchema);
 

@@ -20,6 +20,12 @@ const notificationSchema = mongoose.Schema({
     enum: ['author', 'reviewer', 'all'],
     default: 'all',
   }],
+  // Specific user recipient (optional, overrides targetRoles if set)
+  recipient: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    default: null
+  },
   // Users who have read this notification
   readBy: [{
     type: mongoose.Schema.Types.ObjectId,

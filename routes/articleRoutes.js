@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
+const Notification = require('../models/Notification');
 const { protect, admin } = require('../middleware/authMiddleware');
 const multer = require('multer');
 const path = require('path');
@@ -218,6 +219,104 @@ router.post('/', protect, upload.fields([{ name: 'manuscript', maxCount: 1 }, { 
   }
 });
 
+// @desc    Assign reviewer
+// @route   PUT /api/articles/:id/assign
+// @access  Private/Admin
+router.put('/:id/assign', protect, admin, async (req, res) => {
+    const { reviewerId } = req.body;
+    try {
+        const article = await Article.findById(req.params.id);
+
+        if (article) {
+            // Initialize array if undefined (backward compatibility)
+            if (!article.reviewers) article.reviewers = [];
+
+            // Check if already assigned
+            const alreadyAssigned = article.reviewers.find(r => r.user && r.user.toString() === reviewerId.toString());
+            if (alreadyAssigned) {
+                 return res.status(400).json({ success: false, message: 'Reviewer already assigned' });
+            }
+            
+            // Limit directly to 5
+            if (article.reviewers.length >= 5) {
+                return res.status(400).json({ success: false, message: 'Maximum 5 reviewers allowed' });
+            }
+
+            article.reviewers.push({ user: reviewerId, status: 'invited' });
+            
+            const updatedArticle = await article.save();
+
+            // Create notification for reviewer
+            try {
+                await Notification.create({
+                    title: 'New Review Invitation',
+                    message: `You have been invited to review the manuscript: "${article.title}"`,
+                    type: 'important',
+                    recipient: reviewerId,
+                    createdBy: req.user._id,
+                    link: '/reviewer'
+                });
+            } catch (notifError) {
+                console.error('Failed to create notification:', notifError);
+                // Don't fail the whole request if notification fails
+            }
+
+            res.json(updatedArticle);
+        } else {
+            res.status(404).json({ success: false, message: 'Article not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+// @desc    Accept or decline review invitation
+// @route   PUT /api/articles/:id/respond-invitation
+// @access  Private (Reviewer)
+router.put('/:id/respond-invitation', protect, async (req, res) => {
+    const { response } = req.body; // 'accepted' or 'declined'
+    try {
+        const article = await Article.findById(req.params.id);
+        if (!article) {
+            return res.status(404).json({ success: false, message: 'Article not found' });
+        }
+
+        const reviewerEntry = article.reviewers.find(r => r.user && r.user.toString() === req.user._id.toString());
+        if (!reviewerEntry) {
+            return res.status(401).json({ success: false, message: 'Invitation not found for your account' });
+        }
+
+        if (response === 'accepted') {
+            reviewerEntry.status = 'accepted';
+            article.status = 'under_review';
+        } else if (response === 'declined') {
+            reviewerEntry.status = 'declined';
+        } else {
+            return res.status(400).json({ success: false, message: 'Invalid response' });
+        }
+
+        await article.save();
+
+        // Notify admins about the response
+        try {
+            await Notification.create({
+                title: `Reviewer ${response.charAt(0).toUpperCase() + response.slice(1)}`,
+                message: `Reviewer response for manuscript: "${article.title}". Decision: ${response}`,
+                type: response === 'accepted' ? 'update' : 'warning',
+                targetRoles: ['all'], // Admins check all notifications
+                createdBy: req.user._id, // The reviewer who responded
+                link: '/admin'
+            });
+        } catch (notifError) {
+            console.error('Failed to create notification for admin:', notifError);
+        }
+
+        res.json({ success: true, message: `Invitation ${response}` });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
 // @desc    Update article status and comments
 // @route   PUT /api/articles/:id
 // @access  Private/Admin (or Reviewer for status/comments)
@@ -232,7 +331,7 @@ router.put('/:id', protect, async (req, res) => {
       const isAdmin = req.user.role === 'admin';
       
       // Check if user is one of the reviewers
-      const reviewerEntry = article.reviewers.find(r => r.user.toString() === req.user._id.toString());
+      const reviewerEntry = article.reviewers.find(r => r.user && r.user.toString() === req.user._id.toString());
       const isReviewer = !!reviewerEntry;
 
       if (!isAdmin && !isReviewer) {
@@ -242,16 +341,16 @@ router.put('/:id', protect, async (req, res) => {
       if (isAdmin) {
           // Admin can update global status
            if (status) article.status = status;
-           // Admin can also update general comments if needed, but usually specific reviewer comments are separate
       } else if (isReviewer) {
           // Reviewer updates THEIR specific entry
-          if (status) reviewerEntry.status = status;
-          if (reviewerComments) reviewerEntry.comments = reviewerComments;
+          // Mark reviewer as completed now that they've submitted
+          reviewerEntry.status = 'completed';
+          reviewerEntry.comments = reviewerComments || reviewerEntry.comments;
+          reviewerEntry.decision = status; // Record their recommendation
           reviewerEntry.date = Date.now();
       }
       
       const updatedArticle = await article.save();
-      // await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);
     } else {
       res.status(404).json({ success: false, message: 'Article not found' });
@@ -259,44 +358,6 @@ router.put('/:id', protect, async (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
-});
-
-// @desc    Assign reviewer
-// @route   PUT /api/articles/:id/assign
-// @access  Private/Admin
-router.put('/:id/assign', protect, admin, async (req, res) => {
-    const { reviewerId } = req.body;
-    try {
-        const article = await Article.findById(req.params.id);
-
-        if (article) {
-            // Initialize array if undefined (backward compatibility)
-            if (!article.reviewers) article.reviewers = [];
-
-            // Check if already assigned
-            const alreadyAssigned = article.reviewers.find(r => r.user.toString() === reviewerId);
-            if (alreadyAssigned) {
-                 return res.status(400).json({ success: false, message: 'Reviewer already assigned' });
-            }
-            
-            // Limit directly to 5
-            if (article.reviewers.length >= 5) {
-                return res.status(400).json({ success: false, message: 'Maximum 5 reviewers allowed' });
-            }
-
-            article.reviewers.push({ user: reviewerId, status: 'under_review' });
-            article.status = 'under_review'; // Ensure article is marked as under review
-            
-            const updatedArticle = await article.save();
-
-            // await clearCache(`article_${req.params.id}`);
-            res.json(updatedArticle);
-        } else {
-            res.status(404).json({ success: false, message: 'Article not found' });
-        }
-    } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-    }
 });
 
 // @desc    Update article DOI

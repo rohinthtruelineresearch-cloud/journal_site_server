@@ -4,25 +4,19 @@ const User = require('../models/User');
 const protect = async (req, res, next) => {
   let token;
 
-  console.log('--- Auth Check ---');
-  console.log('Headers Cookie String:', req.headers.cookie);
-  
-  // Check for Bearer token FIRST (Force precedence over stale cookies)
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
     try {
       token = req.headers.authorization.split(' ')[1];
-      console.log('Middleware: Bearer token found:', token); // DEBUG LOG
     } catch (error) {
-       console.error('Middleware Header Parsing Error:', error);
+       console.error('Auth Error:', error);
     }
   } 
   // Fallback to cookie if no header
   else if (req.cookies.jwt) {
     token = req.cookies.jwt;
-    console.log('Middleware: Cookie found:', token.substring(0, 10) + '...');
   }
 
   // Explicitly check for "null" string which happens if frontend sends "Bearer null"

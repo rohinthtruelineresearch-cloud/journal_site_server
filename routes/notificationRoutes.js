@@ -32,11 +32,16 @@ router.get('/', protect, async (req, res) => {
   try {
     const userRole = req.user.role;
     
-    // Find notifications that target this user's role or 'all'
+    // Find notifications that target this user's role, 'all', OR them specifically
     const notifications = await Notification.find({
       $or: [
-        { targetRoles: 'all' },
-        { targetRoles: userRole },
+        { recipient: req.user._id },
+        { 
+          $and: [
+            { recipient: null },
+            { $or: [{ targetRoles: 'all' }, { targetRoles: userRole }] }
+          ]
+        }
       ]
     })
     .sort({ createdAt: -1 })
@@ -70,8 +75,13 @@ router.get('/unread-count', protect, async (req, res) => {
     
     const count = await Notification.countDocuments({
       $or: [
-        { targetRoles: 'all' },
-        { targetRoles: userRole },
+        { recipient: req.user._id },
+        { 
+          $and: [
+            { recipient: null },
+            { $or: [{ targetRoles: 'all' }, { targetRoles: userRole }] }
+          ]
+        }
       ],
       readBy: { $ne: req.user._id }
     });
@@ -115,8 +125,13 @@ router.put('/read-all', protect, async (req, res) => {
     await Notification.updateMany(
       {
         $or: [
-          { targetRoles: 'all' },
-          { targetRoles: userRole },
+          { recipient: req.user._id },
+          { 
+            $and: [
+              { recipient: null },
+              { $or: [{ targetRoles: 'all' }, { targetRoles: userRole }] }
+            ]
+          }
         ],
         readBy: { $ne: req.user._id }
       },

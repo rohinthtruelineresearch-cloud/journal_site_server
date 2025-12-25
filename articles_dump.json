@@ -1,0 +1,1076 @@
+[
+  {
+    "_id": "692eddb3edf67ed3ebe7b081",
+    "title": "Impact of AI on Systems Engineering",
+    "abstract": "This paper explores the transformative effects of artificial intelligence...",
+    "authors": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Full text content of the article goes here...",
+    "status": "rejected",
+    "submittedBy": "651234567890abcdef123456",
+    "createdAt": "2025-12-02T12:38:11.277Z",
+    "updatedAt": "2025-12-10T11:49:41.538Z",
+    "__v": 4,
+    "pdfUrl": "/uploads/pdf-1765350357135.pdf",
+    "doi": "10.1000/692eddb3edf67ed3ebe7b081",
+    "articleNumber": 1,
+    "issue": "Vol 1, Issue 1",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "6939486636a40fa3a0809540",
+        "date": "2025-12-10T10:16:06.804Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "6939486836a40fa3a0809566",
+        "date": "2025-12-10T10:16:08.927Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "6939486a36a40fa3a080958e",
+        "date": "2025-12-10T10:16:10.698Z"
+      },
+      {
+        "user": "69391c60e251baafb5ca63a6",
+        "status": "rejected",
+        "_id": "693954d3dfe81b71c48931e2",
+        "date": "2025-12-10T11:24:38.982Z",
+        "comments": "super bro"
+      }
+    ],
+    "manuscriptUrl": "uploads/dummy.pdf",
+    "coverLetterUrl": "uploads/dummy.pdf"
+  },
+  {
+    "_id": "692eddc2edf67ed3ebe7b083",
+    "title": "Impact of AI on Systems Engineering",
+    "abstract": "This paper explores the transformative effects of artificial intelligence...",
+    "authors": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Full text content of the article goes here...",
+    "status": "accepted",
+    "submittedBy": "651234567890abcdef123456",
+    "createdAt": "2025-12-02T12:38:26.184Z",
+    "updatedAt": "2025-12-10T07:04:32.092Z",
+    "__v": 0,
+    "pdfUrl": "/uploads/pdf-1765188378890.pdf"
+  },
+  {
+    "_id": "692eddc3edf67ed3ebe7b085",
+    "title": "Impact of AI on Systems Engineering",
+    "abstract": "This paper explores the transformative effects of artificial intelligence...",
+    "authors": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Full text content of the article goes here...",
+    "status": "accepted",
+    "submittedBy": "651234567890abcdef123456",
+    "createdAt": "2025-12-02T12:38:27.063Z",
+    "updatedAt": "2025-12-10T07:04:32.092Z",
+    "__v": 0,
+    "pdfUrl": "/uploads/pdf-1765188771456.pdf"
+  },
+  {
+    "_id": "692eddc3edf67ed3ebe7b087",
+    "title": "Impact of AI on Systems Engineering",
+    "abstract": "This paper explores the transformative effects of artificial intelligence...",
+    "authors": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Full text content of the article goes here...",
+    "status": "under_review",
+    "submittedBy": "651234567890abcdef123456",
+    "createdAt": "2025-12-02T12:38:27.734Z",
+    "updatedAt": "2025-12-09T09:02:23.974Z",
+    "__v": 0
+  },
+  {
+    "_id": "692eddc4edf67ed3ebe7b089",
+    "title": "Impact of AI on Systems Engineering",
+    "abstract": "This paper explores the transformative effects of artificial intelligence...",
+    "authors": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Full text content of the article goes here...",
+    "status": "rejected",
+    "submittedBy": "651234567890abcdef123456",
+    "createdAt": "2025-12-02T12:38:28.481Z",
+    "updatedAt": "2025-12-10T11:50:00.230Z",
+    "__v": 1,
+    "reviewers": []
+  },
+  {
+    "_id": "692eddc5edf67ed3ebe7b08b",
+    "title": "Impact of AI on Systems Engineering",
+    "abstract": "This paper explores the transformative effects of artificial intelligence...",
+    "authors": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Full text content of the article goes here...",
+    "status": "revision_required",
+    "submittedBy": "651234567890abcdef123456",
+    "createdAt": "2025-12-02T12:38:29.105Z",
+    "updatedAt": "2025-12-10T11:48:53.826Z",
+    "__v": 3,
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "rejected",
+        "_id": "6939425a458ba3e20600e2ac",
+        "date": "2025-12-10T10:00:21.327Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "6939425d458ba3e20600e2cf",
+        "date": "2025-12-10T09:50:21.144Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "6939425f458ba3e20600e2f4",
+        "date": "2025-12-10T09:50:23.600Z"
+      }
+    ]
+  },
+  {
+    "_id": "6932bcd547b1f877b75f728f",
+    "title": "deep learning ",
+    "abstract": "nil",
+    "authors": [
+      {
+        "firstName": "Karthikeyan",
+        "lastName": "S",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Placeholder content for now",
+    "status": "under_review",
+    "submittedBy": "6932addf7570fd0563ce2348",
+    "createdAt": "2025-12-05T11:07:01.914Z",
+    "updatedAt": "2025-12-10T09:48:13.665Z",
+    "__v": 3,
+    "doi": "10.1000/6932bcd547b1f877b75f728f",
+    "pdfUrl": "/uploads/pdf-1765264638981.pdf",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "rejected",
+        "_id": "69393d23ecc4e4f9d8ae48da",
+        "date": "2025-12-10T09:46:50.282Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "revision_required",
+        "_id": "69393d2aecc4e4f9d8ae48e8",
+        "date": "2025-12-10T09:47:43.200Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "rejected",
+        "_id": "69393d2cecc4e4f9d8ae48f8",
+        "date": "2025-12-10T09:48:13.663Z"
+      }
+    ],
+    "manuscriptUrl": "uploads/dummy.pdf"
+  },
+  {
+    "_id": "6932c32e097c7aeb6473a6a9",
+    "title": "nothing interesting",
+    "abstract": "Pro-forma invoice auto-generated on acceptance\nStripe/Razorpay receipt URLs stored for verification\nWire transfers manually reconciled with submission ID",
+    "authors": [
+      {
+        "firstName": "Karthikeyan",
+        "lastName": "Athiappan",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Placeholder content for now",
+    "status": "rejected",
+    "submittedBy": "6932addf7570fd0563ce2348",
+    "createdAt": "2025-12-05T11:34:06.892Z",
+    "updatedAt": "2025-12-16T07:14:58.584Z",
+    "__v": 4,
+    "doi": "10.1000/6932c32e097c7aeb6473a6a9",
+    "pdfUrl": "/uploads/pdf-1764939228963.pdf",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "rejected",
+        "_id": "6939424b458ba3e20600e249",
+        "date": "2025-12-10T10:00:14.611Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "6939424e458ba3e20600e269",
+        "date": "2025-12-10T09:50:06.472Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "69394250458ba3e20600e28b",
+        "date": "2025-12-10T09:50:08.618Z"
+      }
+    ]
+  },
+  {
+    "_id": "6932d1dc85bc90e97af90fa6",
+    "title": "AI",
+    "abstract": "Ai is evolution of the humman kind",
+    "authors": [
+      {
+        "firstName": "Karthikeyan",
+        "lastName": "P",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Placeholder content",
+    "status": "under_review",
+    "manuscriptUrl": "uploads/manuscript-1764938204681.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1764938204688.pdf",
+    "submittedBy": "6932addf7570fd0563ce2348",
+    "createdAt": "2025-12-05T12:36:44.706Z",
+    "updatedAt": "2025-12-16T07:13:38.808Z",
+    "__v": 3,
+    "doi": "10.1000/6932d1dc85bc90e97af90fa6",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "69394245458ba3e20600e1ef",
+        "date": "2025-12-10T09:49:57.377Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "69394247458ba3e20600e20c",
+        "date": "2025-12-10T09:49:59.862Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "69394249458ba3e20600e22b",
+        "date": "2025-12-10T09:50:01.759Z"
+      }
+    ],
+    "pdfUrl": "/uploads/pdf-1765869218615.pdf"
+  },
+  {
+    "_id": "6932d4559e231a059ba9b232",
+    "title": "Ai with ai",
+    "abstract": "qwertyuiop[]\r\n';lkjhgfdsasdfghjkl;'\r\n",
+    "authors": [
+      {
+        "firstName": "rajkumar",
+        "lastName": "s",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Placeholder content",
+    "status": "under_review",
+    "manuscriptUrl": "uploads/manuscript-1764938837759.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1764938837768.pdf",
+    "submittedBy": "6932addf7570fd0563ce2348",
+    "createdAt": "2025-12-05T12:47:17.786Z",
+    "updatedAt": "2025-12-10T09:49:54.166Z",
+    "__v": 3,
+    "reviewerComments": "the manuscript is suitable in our journel",
+    "pdfUrl": "/uploads/pdf-1765191365179.pdf",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "6939423d458ba3e20600e19e",
+        "date": "2025-12-10T09:49:49.783Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "69394240458ba3e20600e1b8",
+        "date": "2025-12-10T09:49:52.086Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "69394242458ba3e20600e1d4",
+        "date": "2025-12-10T09:49:54.166Z"
+      }
+    ]
+  },
+  {
+    "_id": "6932d6639e231a059ba9b26b",
+    "title": "computational intelligence",
+    "abstract": "the computer is evolving from the room full to slim",
+    "authors": [
+      {
+        "firstName": "Shanmugasundaram",
+        "lastName": "R.S",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Placeholder content",
+    "status": "under_review",
+    "manuscriptUrl": "uploads/manuscript-1764939363775.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1764939363795.pdf",
+    "submittedBy": "6932addf7570fd0563ce2348",
+    "createdAt": "2025-12-05T12:56:03.814Z",
+    "updatedAt": "2025-12-10T09:49:46.923Z",
+    "__v": 3,
+    "reviewerComments": "change the format",
+    "doi": "10.1000/6932d6639e231a059ba9b26b",
+    "pdfUrl": "/uploads/pdf-1765192079665.pdf",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "69394236458ba3e20600e156",
+        "date": "2025-12-10T09:49:42.973Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "69394239458ba3e20600e16d",
+        "date": "2025-12-10T09:49:45.043Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "6939423a458ba3e20600e186",
+        "date": "2025-12-10T09:49:46.921Z"
+      }
+    ]
+  },
+  {
+    "_id": "6934226a2478822eebcfee97",
+    "title": "DEEP-TAIL-NETS: A WIRELESS SENSOR NETWORK BASED INTRUSION DETECTION SYSTEM USING DEEP OPTIMIZED SELF–ATTENTION LEARNING NETWORKS",
+    "abstract": "Purpose\r\nThe integration of Internet of Things (IoT) technologies into Wireless Sensor Networks (WSNs) exposes the network to multiple vulnerabilities, leading to performance degradation under adversarial attacks. Intrusion Detection Systems (IDS) with fast prediction and mitigation capabilities are therefore essential for safeguarding resource-constrained WSN-IoT environments. This research aims to develop a hybrid neural network framework capable of accurately predicting various intrusion patterns while reducing detection latency.\r\nDesign/methodology/approach\r\nThe proposed IDS integrates a Self-Attention based Modified Gated Recurrent Unit (SA-MGRU) network, enabling efficient feature extraction from temporal data. To enhance prediction accuracy and accelerate convergence, model parameters are optimized using the Red Tail Hawk Optimization (RTHO) algorithm. The framework is evaluated using the WSN-DS benchmark dataset, where performance metrics related to detection accuracy, false alarm rate, and latency are analysed. Comparative experiments are performed against recently proposed deep learning-based IDS approaches.\r\nFindings\r\nExperimental results demonstrate that the proposed framework significantly reduces intrusion detection latency while maintaining high prediction accuracy across multiple attack types. The SA-MGRU model optimized with RTHO outperforms existing deep learning IDS methods in terms of efficiency and detection reliability. The model’s lightweight architecture further supports deployment in resource-limited WSN-IoT devices.\r\nOriginality\r\nThis study introduces a novel hybrid IDS combining self-attention and modified recurrent learning with a bio-inspired optimization strategy. The approach improves intrusion prediction performance and operational responsiveness, offering a practical solution for security-critical WSN-IoT applications.\r\n",
+    "authors": [
+      {
+        "firstName": "Venkateswari",
+        "lastName": "p",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Placeholder content",
+    "status": "under_review",
+    "manuscriptUrl": "uploads/dummy.pdf",
+    "coverLetterUrl": "uploads/dummy.pdf",
+    "submittedBy": "693420cf2478822eebcfee89",
+    "createdAt": "2025-12-06T12:32:42.060Z",
+    "updatedAt": "2025-12-10T11:30:57.784Z",
+    "__v": 4,
+    "doi": "10.1000/6934226a2478822eebcfee97",
+    "pdfUrl": "/uploads/pdf-1765191341214.pdf",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "69394225458ba3e20600e117",
+        "date": "2025-12-10T09:49:25.356Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "69394227458ba3e20600e12b",
+        "date": "2025-12-10T09:49:27.603Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "69394229458ba3e20600e141",
+        "date": "2025-12-10T09:49:29.665Z"
+      }
+    ]
+  },
+  {
+    "_id": "69391d775af7efe5ec52cf37",
+    "title": "how to became rich with AI",
+    "abstract": "This research contributes a novel hybrid cyber security architecture combining Artificial Intelligence–driven intrusion detection with blockchain-enabled trust management for vehicular networks. Unlike existing IDS frameworks, the model incorporates a Spider Swarm optimization approach for feature refinement and a neural-based classifier for dynamic threat adaptation. The blockchain layer enhances trust and transparency, ensuring tamper-proof communication without relying on centralized authorities. The system is uniquely designed for future 6G vehicular ecosystems, addressing real-time processing challenges, scalability, and evolving cyberattack patterns. This work provides a valuable foundation for secure, intelligent, and autonomous vehicular communication systems.",
+    "authors": [
+      {
+        "firstName": "Rohinth",
+        "lastName": "S",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Placeholder content",
+    "status": "published",
+    "manuscriptUrl": "uploads/manuscript-1765350775337.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1765350775342.pdf",
+    "submittedBy": "69391c60e251baafb5ca63a6",
+    "createdAt": "2025-12-10T07:12:55.351Z",
+    "updatedAt": "2025-12-10T11:38:11.080Z",
+    "__v": 3,
+    "reviewer": "69391c60e251baafb5ca63a9",
+    "doi": "10.1000/69391d775af7efe5ec52cf37",
+    "pdfUrl": "/uploads/pdf-1765350872387.pdf",
+    "articleNumber": 2,
+    "issue": "Vol 1, Issue 2",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "accepted",
+        "_id": "6939421d458ba3e20600e0e1",
+        "date": "2025-12-10T10:01:56.807Z",
+        "comments": "this is super research paper\n"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "accepted",
+        "_id": "6939421f458ba3e20600e0f2",
+        "date": "2025-12-10T10:02:37.533Z",
+        "comments": "this is amazing\n"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "accepted",
+        "_id": "69394221458ba3e20600e105",
+        "date": "2025-12-10T10:03:07.807Z",
+        "comments": "super bhaiya"
+      }
+    ]
+  },
+  {
+    "_id": "69395478dfe81b71c4893185",
+    "title": "Razorpay / Stripe",
+    "abstract": "• Pro-forma invoice auto-generated on acceptance\r\n• Stripe/Razorpay receipt URLs stored for verification\r\n• Wire transfers manually reconciled with submission ID",
+    "authors": [
+      {
+        "firstName": "Rohinth",
+        "lastName": "S",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Placeholder content",
+    "status": "submitted",
+    "manuscriptUrl": "uploads/manuscript-1765364856611.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1765364856627.pdf",
+    "submittedBy": "69391c60e251baafb5ca63a6",
+    "reviewers": [],
+    "createdAt": "2025-12-10T11:07:36.757Z",
+    "updatedAt": "2025-12-10T11:07:36.757Z",
+    "__v": 0
+  },
+  {
+    "_id": "693fa950b6e067ccc8422c2e",
+    "title": "CRUD Test Article",
+    "abstract": "Testing CRUD operations",
+    "authors": [
+      {
+        "firstName": "Tester",
+        "lastName": "Author",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Content body",
+    "status": "submitted",
+    "manuscriptUrl": "uploads/manuscript-1765779792562.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1765779792563.pdf",
+    "submittedBy": "693fa94fb6e067ccc8422c28",
+    "reviewers": [],
+    "createdAt": "2025-12-15T06:23:12.570Z",
+    "updatedAt": "2025-12-15T06:23:12.570Z",
+    "__v": 0
+  },
+  {
+    "_id": "693fac18b6e067ccc8422c3b",
+    "title": "CRUD Test Article",
+    "abstract": "Testing CRUD operations",
+    "authors": [
+      {
+        "firstName": "Tester",
+        "lastName": "Author",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Content body",
+    "status": "submitted",
+    "manuscriptUrl": "uploads/manuscript-1765780504924.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1765780504925.pdf",
+    "submittedBy": "693fac18b6e067ccc8422c35",
+    "reviewers": [],
+    "createdAt": "2025-12-15T06:35:04.928Z",
+    "updatedAt": "2025-12-15T06:35:04.928Z",
+    "__v": 0
+  },
+  {
+    "_id": "693fac53b6e067ccc8422c4a",
+    "title": "CRUD Test Article",
+    "abstract": "Testing CRUD operations",
+    "authors": [
+      {
+        "firstName": "Tester",
+        "lastName": "Author",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Content body",
+    "status": "submitted",
+    "manuscriptUrl": "uploads/manuscript-1765780563820.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1765780563820.pdf",
+    "submittedBy": "693fac53b6e067ccc8422c44",
+    "reviewers": [],
+    "createdAt": "2025-12-15T06:36:03.822Z",
+    "updatedAt": "2025-12-15T06:36:03.822Z",
+    "__v": 0
+  },
+  {
+    "_id": "693fac7cb6e067ccc8422c59",
+    "title": "CRUD Test Article",
+    "abstract": "Testing CRUD operations",
+    "authors": [
+      {
+        "firstName": "Tester",
+        "lastName": "Author",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Content body",
+    "status": "submitted",
+    "manuscriptUrl": "uploads/manuscript-1765780604756.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1765780604756.pdf",
+    "submittedBy": "693fac7cb6e067ccc8422c53",
+    "reviewers": [],
+    "createdAt": "2025-12-15T06:36:44.758Z",
+    "updatedAt": "2025-12-15T06:36:44.758Z",
+    "__v": 0
+  },
+  {
+    "_id": "693fb045b6e067ccc8422c68",
+    "title": "CRUD Test Article",
+    "abstract": "Testing CRUD operations",
+    "authors": [
+      {
+        "firstName": "Tester",
+        "lastName": "Author",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Content body",
+    "status": "under_review",
+    "manuscriptUrl": "uploads/manuscript-1765781573643.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1765781573645.pdf",
+    "submittedBy": "693fb036b6e067ccc8422c62",
+    "reviewers": [
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "6943e0b70d5940bb440f7399",
+        "date": "2025-12-18T11:08:39.888Z"
+      }
+    ],
+    "createdAt": "2025-12-15T06:52:53.654Z",
+    "updatedAt": "2025-12-18T11:08:39.892Z",
+    "__v": 1,
+    "pdfUrl": "/uploads/pdf-1765869034448.pdf"
+  },
+  {
+    "_id": "693fb4d2fc8e8eb40e993771",
+    "title": "CRUD Test Article",
+    "abstract": "Testing CRUD operations",
+    "authors": [
+      {
+        "firstName": "Tester",
+        "lastName": "Author",
+        "email": "",
+        "institution": "",
+        "city": "",
+        "country": "",
+        "isCorresponding": false,
+        "order": 1
+      }
+    ],
+    "content": "Content body",
+    "status": "published",
+    "manuscriptUrl": "uploads/manuscript-1765782738279.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1765782738280.pdf",
+    "submittedBy": "693fb4d1fc8e8eb40e99376b",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a6",
+        "status": "invited",
+        "_id": "6940fb00e35f3c92d9ba68fa",
+        "date": "2025-12-16T06:24:00.395Z"
+      },
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "6940fb6ff4c675a000930fbb",
+        "date": "2025-12-16T06:25:51.567Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "69410016d9df7bc2446af9ca",
+        "date": "2025-12-16T06:45:42.618Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "69410371d32d58b47d93188f",
+        "date": "2025-12-16T07:00:01.331Z"
+      }
+    ],
+    "createdAt": "2025-12-15T07:12:18.288Z",
+    "updatedAt": "2025-12-16T07:32:47.687Z",
+    "__v": 4,
+    "doi": "10.1000/693fb4d2fc8e8eb40e993771",
+    "pdfUrl": "/uploads/pdf-1765869201938.pdf"
+  },
+  {
+    "_id": "69467b9752a1bd5f8c349425",
+    "title": "VDOKAN FRAMEWORK- A NOVEL HYBRID FRAMEWORK FOR VOICE DISORDER CLASSIFICATION USING OPTIMIZED DEEP GATED KOLMORV ARNOLD NETWORKS",
+    "abstract": "VDOKAN FRAMEWORK- A NOVEL HYBRID FRAMEWORK FOR VOICE DISORDER CLASSIFICATION USING OPTIMIZED DEEP GATED KOLMORV ARNOLD NETWORKS",
+    "paperType": "regular",
+    "authors": [
+      {
+        "firstName": "ss",
+        "lastName": "ss",
+        "email": "ss",
+        "orcid": "",
+        "institution": "ss",
+        "city": "",
+        "country": "",
+        "isCorresponding": true,
+        "order": 1
+      }
+    ],
+    "keywords": [
+      "AI",
+      "MI"
+    ],
+    "content": "",
+    "status": "accepted",
+    "manuscriptUrl": "uploads/manuscript-1766226839398.pdf",
+    "coverLetterUrl": null,
+    "hasFunding": false,
+    "funders": [],
+    "wasConferenceAccepted": false,
+    "conferenceName": "",
+    "suggestedReviewers": [],
+    "opposedReviewers": [],
+    "submittedBy": "6932addf7570fd0563ce2348",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "69467cb852a1bd5f8c3494b0",
+        "date": "2025-12-20T10:38:48.497Z"
+      },
+      {
+        "user": "69391c60e251baafb5ca63a6",
+        "status": "accepted",
+        "_id": "69467cba52a1bd5f8c3494df",
+        "date": "2025-12-20T12:04:34.789Z",
+        "comments": "nil"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "69467cbd52a1bd5f8c349510",
+        "date": "2025-12-20T10:38:53.515Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "69467cc052a1bd5f8c349543",
+        "date": "2025-12-20T10:38:56.240Z"
+      }
+    ],
+    "createdAt": "2025-12-20T10:33:59.613Z",
+    "updatedAt": "2025-12-20T12:04:34.794Z",
+    "__v": 4
+  },
+  {
+    "_id": "69467ed752a1bd5f8c3495d3",
+    "title": "ARNOLD NETWORKS",
+    "abstract": "Voice is one one of the essential feature in the human body, serving as the fundamental tool for communicating and expressing thoughts, ideas, and emotions. Each person has a different voice, and any disturbances in the vibratory patterns of vocal folds may significantly impact interpersonal communication. Such disruptions should be identified early to protect the vocal health. Recently, integration of the Internet of Things (IoT), edge computing, and artificial intelligence (AI) into voice disorder detection has opened new possibilities for creating intelligent, and predictive healthcare systems. However, these systems require the deployment of computationally aware frameworks and methodologies for an early detection of voice disorders. In this context, this research proposes a novel optimized deep learning framework called VDOKAN (Voice disorder detection using Optimized Kololmorgv Arnold networks) which ensembles the techniques such as Mel-Frequency cepstral Co-efficient (MFCC) extraction, gated recurrent units and feed forward networks constructed based on Optimized Kolomorgv Arnold training networks. The suggested stacked models are used for multiple classification of voice disorders such as reflux laryngitis, hypokinetic dysphonia, and hyperkinetic dysphonia. The comprehensive training was carried out using the VOICED datasets, which comprises of 150 pathological and 58 normal voices. Furthermore, proposed framework was validated as the results demonstrated superior performance, achieving a classification accuracy rate of 99.6%, precision of 99.3%, recall of 99.2% and F1-score of 99.4% in classifying the healthy and pathological voices. Experimental evaluation shows promising results for effectively detecting vocal disorders and offers potential advantages in designing intelligent systems, supporting early detection and improved accessibility. ",
+    "paperType": "regular",
+    "authors": [
+      {
+        "firstName": "mukesh",
+        "lastName": "S",
+        "email": "mukesh@gmail.com",
+        "orcid": "",
+        "institution": "institution",
+        "city": "",
+        "country": "",
+        "isCorresponding": true,
+        "order": 1
+      }
+    ],
+    "keywords": [
+      "Ai",
+      "LI",
+      "SE"
+    ],
+    "content": "",
+    "status": "accepted",
+    "manuscriptUrl": "uploads/manuscript-1766227671851.pdf",
+    "coverLetterUrl": null,
+    "hasFunding": false,
+    "funders": [],
+    "wasConferenceAccepted": false,
+    "conferenceName": "",
+    "suggestedReviewers": [],
+    "opposedReviewers": [],
+    "submittedBy": "6932addf7570fd0563ce2348",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a6",
+        "status": "invited",
+        "_id": "69467f0052a1bd5f8c34965c",
+        "date": "2025-12-20T10:48:32.369Z"
+      },
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "69467f2252a1bd5f8c349664",
+        "date": "2025-12-20T10:49:06.927Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "69467f2652a1bd5f8c3496a0",
+        "date": "2025-12-20T10:49:10.298Z"
+      },
+      {
+        "user": "693935a7daf94368bdf8d243",
+        "status": "invited",
+        "_id": "69467f2b52a1bd5f8c3496d7",
+        "date": "2025-12-20T10:49:15.154Z"
+      }
+    ],
+    "createdAt": "2025-12-20T10:47:51.884Z",
+    "updatedAt": "2025-12-20T10:50:48.612Z",
+    "__v": 4
+  },
+  {
+    "_id": "694688ff196ca3482c7baad9",
+    "title": "Bugs Fixed",
+    "abstract": "✅ Bugs Fixed\r\n1. Article Submission Not Appearing on Dashboards\r\nProblem: Submitted manuscripts weren't showing on Author/Admin dashboards\r\nRoot Cause: Frontend was sending files with wrong field names (file_0, file_1) instead of what backend expected (manuscript, coverLetter)\r\nSolution: Fixed \r\nhandleSubmit\r\n function in \r\nsubmit/page.js\r\n to correctly identify and name files\r\n2. Article Model Schema Mismatch\r\nProblem: Backend throwing \"Cast to [string] failed\" error for authors field\r\nRoot Cause: Model expected simple string arrays, but frontend sent complex author objects\r\nSolution: Updated \r\nArticle.js\r\n model with proper authorSchema subdocument supporting firstName, lastName, email, orcid, institution, etc.\r\n3. Author Display Rendering Error\r\nProblem: React error \"Objects are not valid as a React child\" on dashboard pages\r\nRoot Cause: Components trying to render author objects directly as text\r\nSolution: Fixed author display in:\r\nSubmissionsTable.js\r\n (Author Dashboard)\r\nadmin/page.js\r\n (Admin Dashboard)\r\ncurrent-issue/page.js\r\n (Public Issue Page)\r\n4. PDF Preview Close Button Visibility\r\nProblem: Close button on PDF preview modal was hard to find\r\nSolution: Redesigned modal with a prominent red CLOSE button in a dedicated right-side panel",
+    "paperType": "regular",
+    "authors": [
+      {
+        "firstName": "raaj kumar",
+        "lastName": "S",
+        "email": "raakumar@gmail.com",
+        "orcid": "",
+        "institution": "raag college",
+        "city": "",
+        "country": "",
+        "isCorresponding": true,
+        "order": 1
+      }
+    ],
+    "keywords": [
+      "AU",
+      "AK"
+    ],
+    "content": "",
+    "status": "under_review",
+    "manuscriptUrl": "uploads/manuscript-1766230271742.docx",
+    "coverLetterUrl": null,
+    "hasFunding": false,
+    "funders": [],
+    "wasConferenceAccepted": false,
+    "conferenceName": "",
+    "suggestedReviewers": [],
+    "opposedReviewers": [],
+    "submittedBy": "6945133edc28d51295aac67e",
+    "reviewers": [
+      {
+        "user": "69391c60e251baafb5ca63a6",
+        "status": "invited",
+        "_id": "694d0494ac1bca77dfb108f1",
+        "date": "2025-12-25T09:32:04.141Z"
+      },
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "694d0623ac1bca77dfb10afc",
+        "date": "2025-12-25T09:38:43.200Z"
+      }
+    ],
+    "createdAt": "2025-12-20T11:31:11.747Z",
+    "updatedAt": "2025-12-25T09:38:43.200Z",
+    "__v": 2
+  },
+  {
+    "_id": "69491a31d369506c7dfdf1fa",
+    "title": "Chinese Remainder Cryptosystem Based Multilayer Perceptron Signcryption for Secure Vehicular Communication",
+    "abstract": "As the cornerstone of future intelligent transportation, Vehicular Ad hoc Networks (VANETs) provide significant network environments for vehicle communication, efficiently addressing issues like traffic safety, traffic management, and congestion. Recent works from academia, industry, and government highlight the importance of traffic manage-ment. The heterogeneity of vehicle communication incurs high costs. Signcryption, which combines signing and encryption, reduces compu-tational cost but increases communication cost and verification pro-cessing time. To address this, a method called Chinese Remainder Cryptosystem-based Multilayer Perceptron Certificateless Signcryption (CRC-MPCS) is proposed for secure data communication in VANETs. This method employs a deep learning framework with a Multilayer Perceptron comprising three layers. The CRC-MPCS method reduces Signcryption verification processing time, improves data confidentiali-ty, integrity, authentication accuracy, and communication cost.",
+    "paperType": "regular",
+    "authors": [
+      {
+        "firstName": "Jini",
+        "lastName": "K M",
+        "email": "km.jinni.km@gmail.com",
+        "orcid": "",
+        "institution": "Anna university",
+        "city": "Chennai",
+        "country": "India",
+        "isCorresponding": true,
+        "order": 1
+      }
+    ],
+    "keywords": [
+      "Vehicular Ad hoc Network",
+      "Certificateless Signcryption",
+      "Chinese Remainder",
+      "Cryptosystem"
+    ],
+    "content": "",
+    "status": "revision_required",
+    "manuscriptUrl": "uploads/manuscript-1766398512851.docx",
+    "coverLetterUrl": null,
+    "hasFunding": false,
+    "funders": [],
+    "wasConferenceAccepted": false,
+    "conferenceName": "",
+    "suggestedReviewers": [],
+    "opposedReviewers": [],
+    "submittedBy": "694918cfd369506c7dfdf1e9",
+    "reviewers": [],
+    "createdAt": "2025-12-22T10:15:13.568Z",
+    "updatedAt": "2025-12-22T10:16:32.847Z",
+    "__v": 0
+  },
+  {
+    "_id": "694cee5c1ed69a08f84beb3b",
+    "title": "Arnold Training networks.",
+    "abstract": "Voice is one one of the essential feature in the human body, serving as the fundamental tool for communicating and expressing thoughts, ideas, and emotions. Each person has a different voice, and any disturbances in the vibratory patterns of vocal folds may significantly impact interpersonal communication. Such disruptions should be identified early to protect the vocal health. Recently, integration of the Internet of Things (IoT), edge computing, and artificial intelligence (AI) into voice disorder detection has opened new possibilities for creating intelligent, and predictive healthcare systems. However, these systems require the deployment of computationally aware frameworks and methodologies for an early detection of voice disorders. In this context, this research proposes a novel optimized deep learning framework called VDOKAN (Voice disorder detection using Optimized Kololmorgv Arnold networks) which ensembles the techniques such as Mel-Frequency cepstral Co-efficient (MFCC) extraction, gated recurrent units and feed forward networks constructed based on Optimized Kolomorgv Arnold training networks. The suggested stacked models are used for multiple classification of voice disorders such as reflux laryngitis, hypokinetic dysphonia, and hyperkinetic dysphonia. The comprehensive training was carried out using the VOICED datasets, which comprises of 150 pathological and 58 normal voices. Furthermore, proposed framework was validated as the results demonstrated superior performance, achieving a classification accuracy rate of 99.6%, precision of 99.3%, recall of 99.2% and F1-score of 99.4% in classifying the healthy and pathological voices. Experimental evaluation shows promising results for effectively detecting vocal disorders and offers potential advantages in designing intelligent systems, supporting early detection and improved accessibility. ",
+    "paperType": "regular",
+    "authors": [
+      {
+        "firstName": "Rohinth",
+        "lastName": "S",
+        "email": "mukeshs96@yahoo.com",
+        "orcid": "",
+        "institution": "kkt",
+        "city": "",
+        "country": "",
+        "isCorresponding": true,
+        "order": 1
+      }
+    ],
+    "keywords": [
+      "bgh",
+      "hdh"
+    ],
+    "content": "",
+    "status": "under_review",
+    "manuscriptUrl": "uploads/manuscript-1766649435735.pdf",
+    "coverLetterUrl": "uploads/coverLetter-1766649435736.docx",
+    "hasFunding": false,
+    "funders": [],
+    "wasConferenceAccepted": false,
+    "conferenceName": "",
+    "suggestedReviewers": [],
+    "opposedReviewers": [],
+    "submittedBy": "69391c60e251baafb5ca63a6",
+    "reviewers": [
+      {
+        "user": "693935a7daf94368bdf8d240",
+        "status": "invited",
+        "_id": "694d0577ac1bca77dfb109eb",
+        "date": "2025-12-25T09:35:51.082Z"
+      },
+      {
+        "user": "69391c60e251baafb5ca63a9",
+        "status": "invited",
+        "_id": "694d05d8ac1bca77dfb10a8d",
+        "date": "2025-12-25T09:37:28.631Z"
+      }
+    ],
+    "createdAt": "2025-12-25T07:57:16.650Z",
+    "updatedAt": "2025-12-25T09:37:28.632Z",
+    "__v": 2
+  }
+]
