@@ -12,6 +12,7 @@ const issueRoutes = require('./routes/issueRoutes');
 const mergeRoutes = require('./routes/mergeRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const posterRoutes = require('./routes/posterRoutes');
+const inquiryRoutes = require('./routes/inquiryRoutes');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
@@ -66,6 +67,7 @@ app.use('/api/articles', articleRoutes);
 app.use('/api/issues', issueRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/posters', posterRoutes);
+app.use('/api/inquiries', inquiryRoutes);
 app.use('/api', mergeRoutes);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

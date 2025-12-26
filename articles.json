@@ -65,4 +65,47 @@
     "title": "DEEP-TAIL-NETS: A WIRELESS SENSOR NETWORK BASED INTRUSION DETECTION SYSTEM USING DEEP OPTIMIZED SELF–ATTENTION LEARNING NETWORKS",
     "status": "accepted"
   }
+,
+{
+  "_id": "sample1-issue1",
+  "title": "Sample Article 1 for Issue 1",
+  "status": "published",
+  "articleNumber": 2,
+  "issue": "Vol 1, Issue 1"
+},
+{
+  "_id": "sample2-issue1",
+  "title": "Sample Article 2 for Issue 1",
+  "status": "published",
+  "articleNumber": 4,
+  "issue": "Vol 1, Issue 1"
+},
+{
+  "_id": "sample3-issue1",
+  "title": "Sample Article 3 for Issue 1",
+  "status": "published",
+  "articleNumber": 5,
+  "issue": "Vol 1, Issue 1"
+},
+{
+  "_id": "sample1-issue2",
+  "title": "Sample Article 1 for Issue 2",
+  "status": "published",
+  "articleNumber": 2,
+  "issue": "Vol 1, Issue 2"
+},
+{
+  "_id": "sample2-issue2",
+  "title": "Sample Article 2 for Issue 2",
+  "status": "published",
+  "articleNumber": 3,
+  "issue": "Vol 1, Issue 2"
+},
+{
+  "_id": "sample3-issue2",
+  "title": "Sample Article 3 for Issue 2",
+  "status": "published",
+  "articleNumber": 4,
+  "issue": "Vol 1, Issue 2"
+}
 ]
