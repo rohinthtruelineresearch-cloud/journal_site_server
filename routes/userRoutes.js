@@ -10,6 +10,8 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const { protect } = require('../middleware/authMiddleware');
+const crypto = require('crypto');
+const sendEmail = require('../utils/sendEmail');
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -328,5 +330,85 @@ router.get(
     res.redirect(`${frontendUrl}/login?success=true&token=${token}`);
   }
 );
+
+// @desc    Forgot Password
+// @route   POST /api/users/forgotpassword
+// @access  Public
+router.post('/forgotpassword', async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+
+  if (!user) {
+    return res.status(404).json({ success: false, error: 'There is no user with that email.' }); // Don't leak exists/not exists in prod usually, but fine here
+  }
+
+  // Get reset token
+  const resetToken = user.getResetPasswordToken();
+
+  await user.save({ validateBeforeSave: false });
+
+  // Create reset url
+  // Assuming frontend is localhost:3000 for now, or match env
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const resetUrl = `${frontendUrl}/reset-password/${resetToken}`;
+
+  const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl}`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'Password Reset Token',
+      message,
+      html: `
+        <h1>You have requested a password reset</h1>
+        <p>Please go to this link to reset your password:</p>
+        <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+      `
+    });
+
+    res.status(200).json({ success: true, data: 'Email sent' });
+  } catch (err) {
+    console.log(err);
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// @desc    Reset Password
+// @route   PUT /api/users/resetpassword/:resetToken
+// @access  Public
+router.put('/resetpassword/:resetToken', async (req, res, next) => {
+  // Get hashed token
+  const resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(req.params.resetToken)
+    .digest('hex');
+
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    return res.status(400).json({ success: false, error: 'Invalid token' });
+  }
+
+  // Set new password
+  user.password = req.body.password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+
+  await user.save();
+
+  res.status(201).json({
+    success: true,
+    data: 'Password Updated Success',
+    token: generateToken(user._id),
+  });
+});
+
 
 module.exports = router;
