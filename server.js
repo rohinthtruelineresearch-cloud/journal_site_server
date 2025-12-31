@@ -32,7 +32,9 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:5000',
-    'https://aurorajournal.netlify.app'
+    'https://aurorajournal.netlify.app',
+    'https://jaeid.com',
+    'https://www.jaeid.com'
   ],
   credentials: true
 }));
