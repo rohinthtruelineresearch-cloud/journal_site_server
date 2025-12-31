@@ -6,10 +6,20 @@ const { protect, admin } = require('../middleware/authMiddleware');
 const multer = require('multer');
 const path = require('path');
 
-const { articleStorage } = require('../config/cloudinary');
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename(req, file, cb) {
+    cb(
+      null,
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+    );
+  },
+});
 
 const upload = multer({
-  storage: articleStorage,
+  storage,
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   },
@@ -209,8 +219,8 @@ router.post('/', protect, upload.fields([{ name: 'manuscript', maxCount: 1 }, { 
       conferenceName: conferenceName || '',
       content: content || '',
       submittedBy: req.user._id,
-      manuscriptUrl: req.files['manuscript'] ? req.files['manuscript'][0].path : null,
-      coverLetterUrl: req.files['coverLetter'] ? req.files['coverLetter'][0].path : null,
+      manuscriptUrl: req.files['manuscript'] ? req.files['manuscript'][0].path.replace(/\\/g, "/") : null,
+      coverLetterUrl: req.files['coverLetter'] ? req.files['coverLetter'][0].path.replace(/\\/g, "/") : null,
       status: 'submitted',
     });
     
