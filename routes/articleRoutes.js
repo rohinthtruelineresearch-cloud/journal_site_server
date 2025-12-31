@@ -354,6 +354,7 @@ router.put('/:id', protect, async (req, res) => {
       if (isAdmin) {
           // Admin can update global status
            if (status) article.status = status;
+           if (reviewerComments !== undefined) article.reviewerComments = reviewerComments;
       } else if (isReviewer) {
           // Reviewer updates THEIR specific entry
           // Mark reviewer as completed now that they've submitted
