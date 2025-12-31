@@ -17,13 +17,22 @@ const upload = multer({
 
 function checkFileType(file, cb) {
   const filetypes = /pdf|doc|docx/;
+  // Check extension
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = filetypes.test(file.mimetype);
+  // Check mimetype
+  const allowedMimes = [
+      'application/pdf',
+      'application/msword', // .doc
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+      'application/octet-stream' // sometimes sent by browsers
+  ];
+  const mimetype = allowedMimes.includes(file.mimetype);
 
   if (extname && mimetype) {
     return cb(null, true);
   } else {
-    cb('PDFs only!');
+    console.log('File upload rejected. Mime:', file.mimetype, 'Ext:', path.extname(file.originalname));
+    cb('Error: Information files only (PDF, DOC, DOCX)!');
   }
 }
 
