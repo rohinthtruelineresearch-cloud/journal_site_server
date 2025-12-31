@@ -24,7 +24,9 @@ function checkFileType(file, cb) {
       'application/pdf',
       'application/msword', // .doc
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
-      'application/octet-stream' // sometimes sent by browsers
+      'application/octet-stream', // sometimes sent by browsers
+      'application/zip', // docx is invalidly detected as zip sometimes
+      'application/x-zip-compressed'
   ];
   const mimetype = allowedMimes.includes(file.mimetype);
 
