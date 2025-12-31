@@ -16,7 +16,7 @@ const articleStorage = new CloudinaryStorage({
   params: {
     folder: 'journal_articles',
     resource_type: 'raw', // Important for PDFs and non-image files
-    allowed_formats: ['pdf', 'doc', 'docx'],
+    // allowed_formats: ['pdf', 'doc', 'docx'],
     public_id: (req, file) => `${file.fieldname}-${Date.now()}-${file.originalname.replace(/\.[^/.]+$/, "")}`, // Remove extension for ID
   },
 });

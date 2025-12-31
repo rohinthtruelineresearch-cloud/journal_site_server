@@ -135,7 +135,7 @@ articleSchema.pre('save', async function() {
 articleSchema.index({ status: 1 });
 articleSchema.index({ issue: 1 });
 articleSchema.index({ submittedBy: 1 });
-articleSchema.index({ manuscriptId: 1 });
+
 
 const Article = mongoose.model('Article', articleSchema);
 
