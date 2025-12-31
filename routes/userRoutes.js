@@ -323,11 +323,15 @@ router.get(
     // Redirect with token in URL (Old behavior for localStorage)
     res.cookie('jwt', token, cookieOptions);
     
-    // Determine frontend URL
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+    // Determine frontend URL from state (passed from initial request) or env
+    const stateUrl = req.query.state;
+    // Basic validation to ensure stateUrl is a valid URL if present
+    const isValidUrl = stateUrl && (stateUrl.startsWith('http://') || stateUrl.startsWith('https://'));
+    
+    const targetUrl = isValidUrl ? stateUrl : (process.env.FRONTEND_URL || 'http://localhost:3000');
 
     // Redirect with token in URL (Cookie fallback is unreliable across domains)
-    res.redirect(`${frontendUrl}/login?success=true&token=${token}`);
+    res.redirect(`${targetUrl}/login?success=true&token=${token}`);
   }
 );
 
