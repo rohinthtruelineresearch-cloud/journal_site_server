@@ -1,45 +1,49 @@
 const mongoose = require('mongoose');
-const Article = require('./models/Article');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: './.env' });
+dotenv.config();
+
+// Define schema placeholders if models are not requiring correctly, 
+// but sticking to require based on file presence.
+const Article = require('./models/Article');
+const Issue = require('./models/Issue');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    const uri = process.env.MONGO_URI;
+    if (!uri) {
+        console.error('MONGO_URI is not defined in .env');
+        process.exit(1);
+    }
+    console.log('Attempting to connect to:', uri.substring(0, 20) + '...');
+    await mongoose.connect(uri, {
+        serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of 30s
+    });
     console.log('MongoDB Connected');
   } catch (err) {
-    console.error(err.message);
+    console.error('Error connecting to DB:', err.message);
     process.exit(1);
   }
 };
 
-const resetIssues = async () => {
-  await connectDB();
-
-  try {
-    const result = await Article.updateMany(
-      { status: 'published' },
-      { 
-        $set: { status: 'accepted' },
-        $unset: { issue: "", articleNumber: "", doi: "" } 
-      }
-    );
-
-    console.log(`Reset ${result.modifiedCount} articles from Published to Accepted.`);
-    
-    // Also clear any that might have an issue but not be published (just in case)
-    const result2 = await Article.updateMany(
-        { issue: { $exists: true, $ne: null } },
-        { $unset: { issue: "", articleNumber: "" } }
-    );
-    console.log(`Cleared issue field from ${result2.modifiedCount} articles.`);
-
-  } catch (err) {
-    console.error(err);
-  } finally {
-    mongoose.connection.close();
-  }
+const reset = async () => {
+    await connectDB();
+    try {
+        console.log('Deleting all articles...');
+        await Article.deleteMany({});
+        console.log('All articles deleted.');
+        
+        console.log('Deleting all issues...');
+        await Issue.deleteMany({});
+        console.log('All issues deleted.');
+        
+    } catch (err) {
+        console.error('Error resetting data:', err);
+    } finally {
+        await mongoose.connection.close();
+        console.log('Connection closed.');
+        process.exit(0);
+    }
 };
 
-resetIssues();
+reset();

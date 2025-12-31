@@ -6,15 +6,12 @@ const { protect, admin } = require('../middleware/authMiddleware');
 const multer = require('multer');
 const path = require('path');
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename(req, file, cb) {
-    cb(
-      null,
-      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-    );
+const { articleStorage } = require('../config/cloudinary');
+
+const upload = multer({
+  storage: articleStorage,
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
   },
 });
 
@@ -30,18 +27,13 @@ function checkFileType(file, cb) {
   }
 }
 
-const upload = multer({
-  storage,
-  fileFilter: function (req, file, cb) {
-    checkFileType(file, cb);
-  },
-});
+
 
 // @desc    Upload PDF
 // @route   POST /api/articles/upload
 // @access  Private/Admin
 router.post('/upload', protect, admin, upload.single('pdf'), (req, res) => {
-  res.send(`/${req.file.path.replace(/\\/g, '/')}`);
+  res.send(req.file.path);
 });
 
 // @desc    Get next article number for a specific volume/issue
@@ -206,8 +198,8 @@ router.post('/', protect, upload.fields([{ name: 'manuscript', maxCount: 1 }, { 
       conferenceName: conferenceName || '',
       content: content || '',
       submittedBy: req.user._id,
-      manuscriptUrl: req.files['manuscript'] ? req.files['manuscript'][0].path.replace(/\\/g, '/') : null,
-      coverLetterUrl: req.files['coverLetter'] ? req.files['coverLetter'][0].path.replace(/\\/g, '/') : null,
+      manuscriptUrl: req.files['manuscript'] ? req.files['manuscript'][0].path : null,
+      coverLetterUrl: req.files['coverLetter'] ? req.files['coverLetter'][0].path : null,
       status: 'submitted',
     });
     

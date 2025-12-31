@@ -6,23 +6,11 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    const dir = 'uploads/posters/';
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    cb(null, dir);
-  },
-  filename(req, file, cb) {
-    cb(
-      null,
-      `poster-${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
+const { posterStorage } = require('../config/cloudinary');
 
-const upload = multer({ storage });
+const upload = multer({ storage: posterStorage });
+
+
 
 // @desc    Upload a new poster
 // @route   POST /api/posters
@@ -32,11 +20,8 @@ router.post('/', protect, admin, upload.single('poster'), async (req, res) => {
     // 1. Delete existing posters (since only one is allowed)
     await Poster.deleteMany({});
 
-    // 2. Clear old poster files from directory to save space
-    const posterDir = 'uploads/posters/';
-    if (!fs.existsSync(posterDir)) {
-        fs.mkdirSync(posterDir, { recursive: true });
-    }
+    // 2. Clear old poster files logic is handled by Cloudinary replacement or manual cleanup if needed.
+    // For now we just create the new record.
 
     if (!req.file) {
       return res.status(400).json({ message: 'No image file uploaded' });
@@ -46,7 +31,7 @@ router.post('/', protect, admin, upload.single('poster'), async (req, res) => {
     expiryDate.setDate(expiryDate.getDate() + 7); // Set to expire in 7 days
 
     const poster = await Poster.create({
-      imageUrl: req.file.path.replace(/\\/g, '/').replace('uploads/', ''),
+      imageUrl: req.file.path, // Full Cloudinary URL
       expiresAt: expiryDate,
       uploadedBy: req.user._id,
     });
