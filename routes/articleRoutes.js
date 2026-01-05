@@ -283,6 +283,25 @@ router.put('/:id/assign', protect, admin, async (req, res) => {
     }
 });
 
+// @desc    Remove reviewer from article
+// @route   DELETE /api/articles/:id/reviewers/:reviewerId
+// @access  Private/Admin
+router.delete('/:id/reviewers/:reviewerId', protect, admin, async (req, res) => {
+    try {
+        const article = await Article.findById(req.params.id);
+        if (article) {
+             // Remove the reviewer from the array
+             article.reviewers = article.reviewers.filter(r => r.user.toString() !== req.params.reviewerId);
+             await article.save();
+             res.json({ success: true, message: 'Reviewer removed' });
+        } else {
+            res.status(404).json({ success: false, message: 'Article not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
 // @desc    Accept or decline review invitation
 // @route   PUT /api/articles/:id/respond-invitation
 // @access  Private (Reviewer)
@@ -334,7 +353,15 @@ router.put('/:id/respond-invitation', protect, async (req, res) => {
 // @route   PUT /api/articles/:id
 // @access  Private/Admin (or Reviewer for status/comments)
 router.put('/:id', protect, async (req, res) => {
-  const { status, reviewerComments } = req.body;
+  const { 
+    status, 
+    reviewerComments,
+    title,
+    abstract,
+    authors,
+    articleNumber,
+    issue
+  } = req.body;
 
   try {
     const article = await Article.findById(req.params.id);
@@ -352,9 +379,15 @@ router.put('/:id', protect, async (req, res) => {
       }
 
       if (isAdmin) {
-          // Admin can update global status
+          // Admin can update global status and details
            if (status) article.status = status;
            if (reviewerComments !== undefined) article.reviewerComments = reviewerComments;
+           if (title) article.title = title;
+           if (abstract) article.abstract = abstract;
+           if (authors) article.authors = authors;
+           if (articleNumber) article.articleNumber = articleNumber;
+           if (issue) article.issue = issue;
+           
       } else if (isReviewer) {
           // Reviewer updates THEIR specific entry
           // Mark reviewer as completed now that they've submitted
@@ -372,6 +405,24 @@ router.put('/:id', protect, async (req, res) => {
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
+});
+
+// @desc    Delete article
+// @route   DELETE /api/articles/:id
+// @access  Private/Admin
+router.delete('/:id', protect, admin, async (req, res) => {
+    try {
+        const article = await Article.findById(req.params.id);
+
+        if (article) {
+            await Article.deleteOne({ _id: req.params.id }); 
+            res.json({ success: true, message: 'Article removed' });
+        } else {
+            res.status(404).json({ success: false, message: 'Article not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
 });
 
 // @desc    Update article DOI

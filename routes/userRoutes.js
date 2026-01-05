@@ -414,5 +414,28 @@ router.put('/resetpassword/:resetToken', async (req, res, next) => {
   });
 });
 
+// @desc    Update user role (Admin only)
+// @route   PUT /api/users/:id/role
+// @access  Private/Admin
+router.put('/:id/role', protect, async (req, res) => {
+    if (req.user.role !== 'admin') {
+        return res.status(401).json({ success: false, message: 'Not authorized' });
+    }
+
+    const { role } = req.body;
+    try {
+        const user = await User.findById(req.params.id);
+        if (user) {
+            user.role = role;
+            await user.save();
+            res.json({ success: true, message: `User role updated to ${role}` });
+        } else {
+            res.status(404).json({ success: false, message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
 
 module.exports = router;
