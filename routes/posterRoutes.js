@@ -5,20 +5,29 @@ const { protect, admin } = require('../middleware/authMiddleware');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const supabase = require('../utils/supabase');
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename(req, file, cb) {
-    cb(
-      null,
-      `poster-${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
-
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
+
+const uploadToSupabase = async (file, folder = 'posters') => {
+  const fileName = `${folder}/${Date.now()}-${file.originalname.replace(/[^a-zA-Z0-9.]/g, '_')}`;
+  const { data, error } = await supabase.storage
+    .from(process.env.SUPABASE_STORAGE_BUCKET || 'journal-files')
+    .upload(fileName, file.buffer, {
+      contentType: file.mimetype,
+      upsert: false
+    });
+
+  if (error) throw error;
+
+  const { data: { publicUrl } } = supabase.storage
+    .from(process.env.SUPABASE_STORAGE_BUCKET || 'journal-files')
+    .getPublicUrl(fileName);
+
+  return publicUrl;
+};
+
 
 
 
@@ -39,11 +48,14 @@ router.post('/', protect, admin, upload.single('poster'), async (req, res) => {
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + 7); // Set to expire in 7 days
 
+    const publicUrl = await uploadToSupabase(req.file, 'posters');
+
     const poster = await Poster.create({
-      imageUrl: req.file.path.replace(/\\/g, "/"), // Store relative path, normalize slashes
+      imageUrl: publicUrl,
       expiresAt: expiryDate,
       uploadedBy: req.user._id,
     });
+
 
     res.status(201).json(poster);
   } catch (error) {

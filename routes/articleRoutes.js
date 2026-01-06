@@ -5,18 +5,9 @@ const Notification = require('../models/Notification');
 const { protect, admin } = require('../middleware/authMiddleware');
 const multer = require('multer');
 const path = require('path');
+const supabase = require('../utils/supabase');
 
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename(req, file, cb) {
-    cb(
-      null,
-      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
-    );
-  },
-});
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,
@@ -24,6 +15,25 @@ const upload = multer({
     checkFileType(file, cb);
   },
 });
+
+const uploadToSupabase = async (file, folder = 'articles') => {
+  const fileName = `${folder}/${Date.now()}-${file.originalname.replace(/[^a-zA-Z0-9.]/g, '_')}`;
+  const { data, error } = await supabase.storage
+    .from(process.env.SUPABASE_STORAGE_BUCKET || 'journal-files')
+    .upload(fileName, file.buffer, {
+      contentType: file.mimetype,
+      upsert: false
+    });
+
+  if (error) throw error;
+
+  const { data: { publicUrl } } = supabase.storage
+    .from(process.env.SUPABASE_STORAGE_BUCKET || 'journal-files')
+    .getPublicUrl(fileName);
+
+  return publicUrl;
+};
+
 
 function checkFileType(file, cb) {
   const filetypes = /pdf|doc|docx/;
@@ -53,9 +63,19 @@ function checkFileType(file, cb) {
 // @desc    Upload PDF
 // @route   POST /api/articles/upload
 // @access  Private/Admin
-router.post('/upload', protect, admin, upload.single('pdf'), (req, res) => {
-  res.send(req.file.path);
+router.post('/upload', protect, admin, upload.single('pdf'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+    const publicUrl = await uploadToSupabase(req.file, 'final-pdfs');
+    res.send(publicUrl);
+  } catch (error) {
+    console.error('Supabase upload error:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
 });
+
 
 // @desc    Get next article number for a specific volume/issue
 // @route   GET /api/articles/next-number
@@ -205,6 +225,17 @@ router.post('/', protect, upload.fields([{ name: 'manuscript', maxCount: 1 }, { 
       }
     };
 
+    let manuscriptUrl = null;
+    let coverLetterUrl = null;
+
+    if (req.files['manuscript']) {
+      manuscriptUrl = await uploadToSupabase(req.files['manuscript'][0], 'manuscripts');
+    }
+
+    if (req.files['coverLetter']) {
+      coverLetterUrl = await uploadToSupabase(req.files['coverLetter'][0], 'cover-letters');
+    }
+
     const article = await Article.create({
       title,
       abstract,
@@ -219,10 +250,11 @@ router.post('/', protect, upload.fields([{ name: 'manuscript', maxCount: 1 }, { 
       conferenceName: conferenceName || '',
       content: content || '',
       submittedBy: req.user._id,
-      manuscriptUrl: req.files['manuscript'] ? req.files['manuscript'][0].path.replace(/\\/g, "/") : null,
-      coverLetterUrl: req.files['coverLetter'] ? req.files['coverLetter'][0].path.replace(/\\/g, "/") : null,
+      manuscriptUrl,
+      coverLetterUrl,
       status: 'submitted',
     });
+
     
     console.log('Article created:', article._id, 'by user:', req.user._id);
     res.status(201).json(article);
