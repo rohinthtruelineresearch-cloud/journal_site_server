@@ -11,6 +11,8 @@ const authorSchema = new mongoose.Schema({
   country: { type: String, default: '' },
   isCorresponding: { type: Boolean, default: false },
   order: { type: Number, default: 1 },
+  // Author classification: first, second, third, fourth, etc.
+  authorRole: { type: String, default: '' }, // e.g., "First Author", "Second Author", "Corresponding Author"
 }, { _id: false });
 
 const articleSchema = mongoose.Schema({
@@ -72,7 +74,14 @@ const articleSchema = mongoose.Schema({
   suggestedReviewers: [{
     name: String,
     email: String,
-    institution: String,
+    phone: String,
+    designation: String,
+    department: String,
+    college: String,
+    university: String,
+    institution: String, // Affiliation
+    expertise: String,
+    country: String,
   }],
   opposedReviewers: [{
     name: String,

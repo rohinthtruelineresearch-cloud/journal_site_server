@@ -39,6 +39,7 @@ const userSchema = mongoose.Schema({
   zipCode: { type: String },
   city: { type: String },
   country: { type: String },
+  expertise: { type: String },
   biography: { type: String },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
