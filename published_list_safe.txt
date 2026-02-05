@@ -1,0 +1,13 @@
+--- Current Published Articles ---
+ID: 6957b16982cac177d1fd6b4c, Title: "Enhanced Electrostatic Separation for Solar Panel Recycling Using Random Forest-Based Machine Learning  ", Issue: Vol 1, Issue 1, Number: 3
+ID: 6957b30582cac177d1fd6b5f, Title: "Real-Time Fault Detection in a Photovoltaic System Using TMS320F28379D and XGBoost Algorithm  ", Issue: Vol 1, Issue 1, Number: 2
+ID: 6957b4c882cac177d1fd6b78, Title: "A Scalable Predictive Maintenance Architecture for Transformers Using Digital Twin and Large Language Model ", Issue: Vol 1, Issue 1, Number: 1
+
+--- All Other Articles (Candidates for Deletion) ---
+ID: 6954db205c7da11a7f4a9245, Title: "Test Article Title 1767168797614", Status: rejected
+ID: 695509e163e0dafdac82e07a, Title: "DEEP-TAIL-NETS: A WIRELESS SENSOR NETWORK BASED INTRUSION DETECTION SYSTEM USING DEEP OPTIMIZED SELF–ATTENTION LEARNING NETWORKS", Status: rejected
+ID: 69550aee63e0dafdac82e09b, Title: "DEEP-TAIL-NETS: A WIRELESS SENSOR NETWORK BASED INTRUSION DETECTION SYSTEM USING DEEP OPTIMIZED SELF–ATTENTION LEARNING NETWORKS", Status: rejected
+ID: 6957acf182cac177d1fd6b22, Title: "AI -Powered Enhanced Cancer Classification Based on Bio Marker Gene Identification Using Optimal Hybrid HELIX Feature Selection with Resnet Capsule Convolution Neural Network ", Status: rejected
+ID: 6957b96282cac177d1fd6cee, Title: "DEEP-TAIL-NETS: A WIRELESS SENSOR NETWORK BASED INTRUSION DETECTION SYSTEM USING DEEP OPTIMIZED SELF–ATTENTION LEARNING NETWORKS", Status: rejected
+ID: 695cbd5b040885e1844b50e8, Title: "VDOKAN Framework- A Novel Hybrid Framework for Voice Disorder Classification Using Optimized Deep Gated Kolmorv Arnold Networks", Status: rejected
+ID: 695fa26ded4b973f5b2f2785, Title: "AI -Powered Enhanced Cancer Classification Based on Bio Marker Gene Identification Using Optimal Hybrid HELIX Feature Selection with Resnet Capsule Convolution Neural Network ", Status: rejected
