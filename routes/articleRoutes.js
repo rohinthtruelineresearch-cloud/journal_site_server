@@ -465,7 +465,7 @@ router.put('/:id/doi', protect, admin, async (req, res) => {
     const article = await Article.findById(req.params.id);
 
     if (article) {
-      article.doi = `10.1000/${article._id}`; // Simple DOI generation logic
+      article.doi = `10.66153/${article._id}`; // Simple DOI generation logic
       const updatedArticle = await article.save();
       // await clearCache(`article_${req.params.id}`);
       res.json(updatedArticle);

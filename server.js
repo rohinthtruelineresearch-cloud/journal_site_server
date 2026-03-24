@@ -72,6 +72,10 @@ app.use('/api/posters', posterRoutes);
 app.use('/api/inquiries', inquiryRoutes);
 app.use('/api', mergeRoutes);
 
+app.get('/', (req, res) => {
+  res.send('API is running...');
+});
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(errorHandler);
